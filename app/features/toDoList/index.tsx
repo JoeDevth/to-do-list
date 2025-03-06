@@ -104,7 +104,6 @@ export default function ToDoListReder() {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-black dark:bg-white">
-
       <h1 className="text-3xl font-bold mb-4 text-white dark:text-white flex justify-center">
         To Do List
       </h1>
