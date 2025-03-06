@@ -3,11 +3,10 @@ import { GlowingEffect } from "./ui/glowing-effect";
 
 interface GridItemProps {
   area: string;
-  icon: React.ReactNode;
   children?: React.ReactNode;
 }
 
-export const GridItem = ({ area, icon, children }: GridItemProps) => {
+export const GridItem = ({ area, children }: GridItemProps) => {
   return (
     <li className={`min-h-[14rem] list-none ${area}`}>
       <div className="relative h-full rounded-2.5xl border  p-2  md:rounded-3xl md:p-3">

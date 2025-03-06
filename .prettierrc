@@ -1,0 +1,14 @@
+{
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "tabWidth": 2,
+    "printWidth": 80,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "eslint.autoFixOnSave": true,
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    }
+  }
+  

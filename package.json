@@ -5,13 +5,20 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "build:dev": "env-cmd -f ./env/.env.dev next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "prepare": "husky install",
+    "type-check": "tsc --noEmit",
+    "render-build": "pnpm install && pnpm build"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "local-to-do-list": "link:",
     "lucide-react": "^0.477.0",
     "motion": "^12.4.10",
     "next": "15.2.1",
@@ -38,18 +45,27 @@
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "env-cmd": "^10.1.0",
-    "eslint": "^8.57.1",
+    "eslint": "^9.21.0",
     "eslint-config-next": "14.2.4",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-config-prettier": "^10.0.2",
+    "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "globals": "^16.0.0",
     "husky": "^8.0.3",
     "json-loader": "^0.5.7",
     "postcss": "^8.4.49",
-    "prettier": "^3.4.2",
+    "prettier": "^3.5.3",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "rules": {
+      "semi": [
+        "error",
+        "always"
+      ]
+    }
   }
 }
