@@ -27,7 +27,6 @@ export default function ToDoListReder() {
   const [inputValue, setInputValue] = useState<string>('');
   const [inputValueEdit, setInputValueEdit] = useState<string>('');
 
-  // Load todos from localStorage
   useEffect(() => {
     const storedTodos = localStorage.getItem('toDoList');
     if (storedTodos) {
@@ -35,7 +34,6 @@ export default function ToDoListReder() {
     }
   }, []);
 
-  // Save todos to localStorage whenever they change
   useEffect(() => {
     localStorage.setItem('toDoList', JSON.stringify(todos));
   }, [todos]);
@@ -62,7 +60,7 @@ export default function ToDoListReder() {
   };
 
   const onSubmitEdit = (key: string) => {
-    if (inputValueEdit !== '') {
+    if (inputValueEdit.trim() !== '') {
       setTodos(
         todos.map((todo) =>
           todo.key === key ? { ...todo, value: inputValueEdit, edit: false } : todo,
@@ -86,13 +84,12 @@ export default function ToDoListReder() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-black dark:bg-white">
+    <div className="flex flex-col items-center justify-center h-screen bg-black dark:bg-black">
       <h1 className="text-3xl font-bold mb-4 text-white dark:text-white flex justify-center">
         To Do List
       </h1>
       <div className="grid grid-cols-1 gap-4 relative">
         <GridItem area="md:[grid-area:2/1/3/7] xl:[grid-area:1/5/3/8]">
-          {/* เพิ่ม PlaceholdersAndVanishInput ลงใน GridItem */}
           <PlaceholdersAndVanishInput
             placeholders={placeholders}
             onChange={handleChange}
@@ -106,8 +103,8 @@ export default function ToDoListReder() {
                   type="text"
                   value={inputValueEdit}
                   onChange={handleChangeEdit}
-                  onSubmit={() => onSubmitEdit(item.key)}
                   autoFocus
+                  className="text-black"
                 />
               ) : (
                 <p
@@ -126,12 +123,21 @@ export default function ToDoListReder() {
                 >
                   {item.status ? <Lock /> : <MdOutlineDone className="h-6 w-6 text-bold" />}
                 </button>
-                <button
-                  onClick={() => handleChangeStateEdit(item.key, item.value, item.edit)}
-                  className="text-white dark:text-white"
-                >
-                  <Save />
-                </button>
+                {item.edit ? (
+                  <button
+                    onClick={() => onSubmitEdit(item.key)}
+                    className="text-white dark:text-white"
+                  >
+                    <Save />
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => handleChangeStateEdit(item.key, item.value, item.edit)}
+                    className="text-white dark:text-white"
+                  >
+                    <Save />
+                  </button>
+                )}
                 <button
                   onClick={() => handleDelete(item.key)}
                   className="text-white dark:text-white"
