@@ -65,9 +65,7 @@ export default function ToDoListReder() {
     if (inputValueEdit !== '') {
       setTodos(
         todos.map((todo) =>
-          todo.key === key
-            ? { ...todo, value: inputValueEdit, edit: false }
-            : todo,
+          todo.key === key ? { ...todo, value: inputValueEdit, edit: false } : todo,
         ),
       );
       setInputValueEdit('');
@@ -80,17 +78,11 @@ export default function ToDoListReder() {
 
   const handleChangeStateEdit = (key: string, value: string, edit: boolean) => {
     setInputValueEdit(value);
-    setTodos(
-      todos.map((todo) => (todo.key === key ? { ...todo, edit: !edit } : todo)),
-    );
+    setTodos(todos.map((todo) => (todo.key === key ? { ...todo, edit: !edit } : todo)));
   };
 
   const handleStatus = (key: string) => {
-    setTodos(
-      todos.map((todo) =>
-        todo.key === key ? { ...todo, status: !todo.status } : todo,
-      ),
-    );
+    setTodos(todos.map((todo) => (todo.key === key ? { ...todo, status: !todo.status } : todo)));
   };
 
   return (
@@ -132,16 +124,10 @@ export default function ToDoListReder() {
                   onClick={() => handleStatus(item.key)}
                   className="text-white dark:text-white"
                 >
-                  {item.status ? (
-                    <Lock />
-                  ) : (
-                    <MdOutlineDone className="h-6 w-6 text-bold" />
-                  )}
+                  {item.status ? <Lock /> : <MdOutlineDone className="h-6 w-6 text-bold" />}
                 </button>
                 <button
-                  onClick={() =>
-                    handleChangeStateEdit(item.key, item.value, item.edit)
-                  }
+                  onClick={() => handleChangeStateEdit(item.key, item.value, item.edit)}
                   className="text-white dark:text-white"
                 >
                   <Save />
